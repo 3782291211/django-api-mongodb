@@ -1,0 +1,24 @@
+{% extends "rest_framework/base.html" %}
+
+{% load static %}
+
+{% block title %} Django API {% endblock %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'templates/style.css' %}">
+{% endblock %}
+
+{% block branding %}
+<span>
+    <a href="" rel="nofollow" class="navbar-brand">
+        Automatrix project API
+    </a>
+</span>
+{% endblock %}
+
+{% block bootstrap_theme %}
+<link href="
+https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/quartz/bootstrap.min.css
+" rel="stylesheet">
+{% endblock %}
