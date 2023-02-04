@@ -1,6 +1,6 @@
 # API project featuring Django Rest Framework and MongoDB
 
-Welcome to another one of my backend projects. Here I have created a NoSQL web API with Django REST framework featuring full CRUD functionality and exhaustive integration testing. This API is built upon a document data model and is connected to document collections hosted on a MongoDB databse cluster.
+Welcome to another one of my backend projects. Here I have created a NoSQL web API with Django REST framework featuring full CRUD functionality and exhaustive integration testing. This API is built upon a document data model and is connected to document collections hosted on a MongoDB database cluster.
 
 Visit the link above to view the browsable API which will enable you to explore all of the API's features.
 
