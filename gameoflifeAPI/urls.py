@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from apiApp import views
 
-handler404 = 'apiApp.views.handler404'
-handler500 = 'apiApp.views.handler500'
+handler404 = 'apiApp.views.page_not_found'
+handler500 = 'apiApp.views.internal_server_error'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
