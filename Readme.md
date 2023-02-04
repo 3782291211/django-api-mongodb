@@ -4,7 +4,6 @@ Welcome to another one of my backend projects. Here I have created a NoSQL web A
 
 Visit the link above to view the browsable API which will enable you to explore all of the API's features.
 
-<br>
 
 ## Key product features:
 - Browsable front-end with responsive design elements.
@@ -16,7 +15,6 @@ Visit the link above to view the browsable API which will enable you to explore 
 - Virtual environment for project dependencies.
 - Multi-app project structure, in line with best practice.
 
-<br>
 
 ## Screenshots
 Making a GET request for all patterns by a specific user:
