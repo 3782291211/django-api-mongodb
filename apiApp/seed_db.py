@@ -1,11 +1,15 @@
 from dev_data import patterns, users
 from pymongo import MongoClient
 
+import os
+import urllib.parse 
+from dotenv import load_dotenv
+load_dotenv()
+
+mongo_uri = str(os.getenv('MONGO_URI'))
+client = MongoClient(mongo_uri)
 
 def seed_db():
-    client = MongoClient(
-        "mongodb+srv://GNA7R:eerDKGruC7PUqjyx@rootcluster.i0un9uw.mongodb.net/?retryWrites=true&w=majority"
-    )
     db = client['multiply_till_you_die_db']
     patterns_collection = db['patterns']
     patterns_collection.drop()
