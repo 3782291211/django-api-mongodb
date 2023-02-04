@@ -13,26 +13,29 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 #from urllib.parse import quote_plus
 import urllib
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lir-hg06$lj&buc)ct0%5#-h+_kt*#cwwg+a8*+z35#p8_$krb'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+#if debug = False, use python3 manage.py runserver --insecure
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apiApp',
+    'templates',
     'testingApp',
-    'rest_framework',
     'mongo_auth',
     'corsheaders'
 ]
@@ -64,7 +67,7 @@ ROOT_URLCONF = 'gameoflifeAPI.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,15 +80,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gameoflifeAPI.wsgi.application'
-
-
 MANGO_JWT_SETTINGS = {
-    "db_host": "rootcluster.i0un9uw.mongodb.net",
+    "db_host": str(os.getenv('DB_HOST')),
     "db_name": "multiply_till_you_die_db",
-    "db_user": urllib.parse.quote_plus("GNA7R"),
-    "db_pass": urllib.parse.quote_plus("eerDKGruC7PUqjyx"),
+    "db_user": urllib.parse.quote_plus(str(os.getenv('MONGO_USERNAME'))),
+    "db_pass": urllib.parse.quote_plus(str(os.getenv('MONGO_PASSWORD'))),
 }
+
+WSGI_APPLICATION = 'gameoflifeAPI.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -132,7 +134,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'root')
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'boot'))
+
+
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+#STATICFILES_DIRS = [ BASE_DIR / "static"]
+#Your project will probably also have static assets that aren’t tied to a particular app. In addition to using a static/ directory inside your apps, you can define a list of directories (STATICFILES_DIRS) in your settings file where Django will also look for static files.
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
