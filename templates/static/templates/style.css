@@ -1,11 +1,74 @@
-* {
-    background-color: red;
+.btn-group {
+margin: 10px auto
 }
 
-body {
-    background-color: black;
+* {
+    color: black
+}
+
+html {
+    margin-bottom: 80px
+}
+
+a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+a.btn {
+    margin: 0
 }
 
 h1 {
-    color: pink
+    margin: 5px 0
+}
+
+div.container {
+  margin-top: 5px 0
+}
+
+.breadcrumb {
+    margin: 20px auto 5px
+}
+
+a.navbar-brand {
+    font-size: 40px;
+    font-weight: 900;
+    text-shadow: 2px 2px 3px rgb(12, 11, 42);
+}
+
+pre.prettyprint {
+    background-color: rgb(207, 250, 253);
+    border-radius: 10px;
+    box-shadow: 0 0 40px 5px rgb(255, 0, 153);
+    margin: 30px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+span.str {
+    color: black;
+}
+
+span {
+    font-size: 17px;
+    line-height: 5px;
+}
+
+div.wrapper {
+    margin: 50px 0
+}
+
+#id__content, #id__content_type {
+    background-color: whitesmoke;
+    color: black;
+    margin: 5px 0;
+    box-shadow: 2px 2px 2px 2px rgba(46, 38, 38, 0.56);
+}
+
+#id__content {
+    margin-bottom: 20px
 }
