@@ -27,6 +27,23 @@ from rest_framework import status
 import os
 import urllib.parse 
 from dotenv import load_dotenv
+import requests
+from requests.auth import HTTPDigestAuth
+from ipify import get_ip
+
+atlas_api_public_key = os.getenv("ATLAS_API_KEY_PUBLIC")
+atlas_api_private_key = os.getenv("ATLAS_API_KEY_PRIVATE")
+atlas_group_id = os.getenv("ATLAS_GROUP_ID")
+ip = get_ip()
+
+def whitelistIP():
+    resp = requests.post("https://cloud.mongodb.com/api/atlas/v1.0/groups/{atlas_group_id}/accessList".format(atlas_group_id=atlas_group_id), auth=HTTPDigestAuth(atlas_api_public_key, atlas_api_private_key), json=[{'ipAddress': ip, 'comment': 'From PythonAnywhere'}])
+    
+    if resp.status_code in (200, 201):
+        print("MongoDB Atlas accessList request successful", flush=True)
+    else:
+        print("MongoDB Atlas accessList request problem: status code was {status_code}, content was {content}".format(status_code=resp.status_code, content=resp.content), flush=True)
+
 load_dotenv()
 
 mongo_uri = str(os.getenv('MONGO_URI'))
@@ -41,6 +58,7 @@ users_collection = db["users"]
 @api_view(["GET", "POST"])
 def get_patterns(request):
     if request.method == "GET":
+        whitelistIP()
         return Response(
             {"patterns": json.loads(find_patterns(request, patterns_collection))},
             status=status.HTTP_200_OK,
