@@ -1,12 +1,16 @@
 # API project featuring Django REST framework and MongoDB
 
-**[Link to my live API](https://automatrixapi.pythonanywhere.com/)**
+**[Link to the API's root endpoint](https://automatrixapi.pythonanywhere.com/)**
+<br/>
+**[Link to the front end interface for this API](https://3782291211.github.io/vue-api-interface/)**
 
 Welcome to another one of my backend projects. Here I have created a NoSQL web API with Django REST framework featuring full CRUD functionality and exhaustive integration testing. This API is built upon a document data model and is connected to document collections hosted on a MongoDB database cluster.
 
-Visit the link above to view the browsable API which will enable you to explore all of the API's endpoints, HTTP methods and error messages.
+Visit the links above to view the API and explore all of its endpoints, HTTP methods and error messages.
 
 ## Endpoints
+To access each resource, simply append one of these paths to the API's base URL.
+
 - /api/patterns 
     - **GET | POST**
 - /api/patterns/:pattern_id 
@@ -20,7 +24,6 @@ Visit the link above to view the browsable API which will enable you to explore 
 
 
 ## Key product features:
-- Browsable front-end with responsive design elements.
 - Based on an MVT design pattern.
 - Variety of endpoints providing GET, POST, PUT and DELETE functionality.
 - Extensive error handling with custom error messages for distinct concerns.
@@ -28,17 +31,3 @@ Visit the link above to view the browsable API which will enable you to explore 
 - Function-based views and class-based tests.
 - Virtual environment for project dependencies.
 - Multi-app project structure, in line with best practice.
-
-
-## Screenshots
-Making a GET request for all patterns by a specific user:
-<br>
-<img width="500" src="api_view3_iPad_Air.png">
-
-Making a PUT request for a user:
-<br>
-<img width="500" src="api_view2_iPhone_SE.png">
-
-Making a POST request:
-<br>
-<img width="500" src="api_view1_Surface_Pro_7.png">
