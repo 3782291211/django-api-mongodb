@@ -20,6 +20,13 @@ def find_patterns(request, pattern_collection):
     return pattern_data
     #return render(request, 'home.html')
 
+def find_comments(request, comments_collection):
+    return MongoJSONEncoder().encode(list(comments_collection.find({}).sort("created_at", -1)))
+
+def delete_comment(id, collection):
+    collection.delete_one({"_id": ObjectId(id)})
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 def find_single_pattern(request, id, pattern_collection):
     try:
@@ -119,6 +126,15 @@ def insert_pattern(request, patterns_collection, users_collection):
         {"pattern": json.loads(new_pattern)[0]}, status=status.HTTP_201_CREATED
     )
 
+def insert_comment(request, comments_collection):
+    request_body = request.data
+    request_body["created_at"] = datetime.now()
+    if comments_collection.find_one({"comment" : request_body["comment"]}):
+        return Response({"msg": "This appears to be a duplicate of an existing comment."}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        comments_collection.insert_one(request_body)
+        new_comment = MongoJSONEncoder().encode(list(comments_collection.find({"comment": request_body["comment"]})))
+        return Response({"comment": json.loads(new_comment)[0]}, status=status.HTTP_201_CREATED)
 
 def insert_user(request, users_collection):
     request_body = request.data
@@ -221,6 +237,8 @@ def update_user(request, id, users_collection, patterns_collection):
             status=status.HTTP_400_BAD_REQUEST,
         )
 
+    users_collection.update_one({"_id": ObjectId(id)}, {"$set": request_body})
+
     old_usernames = []
     curr_usernames = []
     for patterns in patterns_collection.find({}):
@@ -229,8 +247,7 @@ def update_user(request, id, users_collection, patterns_collection):
         curr_usernames.append(users["username"])
 
     updated_username = [k for k in old_usernames if k not in curr_usernames]
-
-    users_collection.update_one({"_id": ObjectId(id)}, {"$set": request_body})
+    #print(updated_username, '<<updated username') #old username; []
 
     if len(updated_username) != 0:
         patterns_collection.update_many(
