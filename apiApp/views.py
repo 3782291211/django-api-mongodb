@@ -13,7 +13,10 @@ from apiApp.models import (
     insert_user,
     update_pattern,
     update_user,
-    delete_items
+    delete_items,
+    find_comments,
+    insert_comment,
+    delete_comment
 )
 import json
 from apiApp.endpoints import endpoints
@@ -35,8 +38,20 @@ client = MongoClient(mongo_uri)
 db = client["multiply_till_you_die_db"]
 patterns_collection = db["patterns"]
 users_collection = db["users"]
+comments_collection = db["comments"]
 
 # Create your views here.
+@api_view(["GET", "POST"])
+def get_comments(request):
+    if request.method == "GET":
+        return Response({"comments": json.loads(find_comments(request, comments_collection))}, status=status.HTTP_200_OK)
+    elif request.method == "POST":
+        return insert_comment(request, comments_collection)
+
+@api_view(["DELETE"])
+def single_comment(request, id):
+    if request.method == "DELETE":
+        return delete_comment(id, comments_collection)
 
 @api_view(["GET", "POST"])
 def get_patterns(request):
