@@ -21,6 +21,10 @@ To access each resource, simply append one of these paths to the API's base URL.
     - **GET | PUT | DELETE**
 - /api/users/:username/patterns 
     - **GET**
+- /api/comments
+    - **GET | POST**
+- /api/comments/:comment_id
+    - **DELETE**
 
 
 ## Key product features:
