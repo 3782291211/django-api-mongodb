@@ -32,6 +32,7 @@ To access each resource, simply append one of these paths to the API's base URL.
 - Variety of endpoints providing GET, POST, PUT and DELETE functionality.
 - Extensive error handling with custom error messages for distinct concerns.
 - Full integration testing using Django's test case class.
-- Function-based views and class-based tests.
+- Function-based views and object oriented tests.
+- JWT user authentication services offering signup and login functionality.
 - Virtual environment for project dependencies.
 - Multi-app project structure, in line with best practice.
